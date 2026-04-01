@@ -78,6 +78,51 @@
             <h3>Mapa de eventos</h3>
             <div id="map"></div>
         </div>
+
+        <div class="grid-x grid-margin-x align-center">
+                <div class="cell small-12 medium-10 large-8">
+                    <div class="comment-card light" id="comment-card">
+                        <div class="grid-x align-justify align-middle">
+                            <div class="cell auto">
+                                <h3>Comentarios sobre los eventos</h3>
+                            </div>
+                        </div>
+
+                        <form id="comment-form" onsubmit="return enviarComentario(event)">
+                            <label>Evento
+                                <select name="evento" required>
+                                    <option value="Hackathon 2026">Hackathon 2026</option>
+                                    <option value="FLISOL">FLISOL</option>
+                                    <option value="Charla IA">Charla IA</option>
+                                </select>
+                            </label>
+
+                            <label>Nombre
+                                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                            </label>
+
+                            <label>Correo
+                                <input type="email" name="correo" placeholder="tu@email.com" required>
+                            </label>
+
+                            <label>Comentario
+                                <textarea name="mensaje" rows="5" placeholder="Cuéntanos qué te pareció el evento" required></textarea>
+                            </label>
+
+                            <div class="grid-x grid-margin-x align-justify align-middle">
+                                <div class="cell auto">
+                                    <button type="submit" class="neon-button">Enviar comentario</button>
+                                </div>
+                                <div class="cell auto">
+                                    <span class="comment-note">Tu opinión ayuda a mejorar los próximos eventos.</span>
+                                </div>
+                            </div>
+
+                            <p class="success-message" id="comment-message"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </main>
 
     <footer>
@@ -91,6 +136,25 @@
 
     <script>
         $(document).foundation();
+
+        function toggleCommentTheme() {
+            const card = document.getElementById('comment-card');
+            const button = document.getElementById('theme-toggle');
+            const darkMode = card.classList.toggle('dark');
+            card.classList.toggle('light', !darkMode);
+            button.textContent = darkMode ? 'Modo claro' : 'Modo oscuro';
+        }
+
+        function enviarComentario(event) {
+            event.preventDefault();
+            const form = event.target;
+            const message = document.getElementById('comment-message');
+            const evento = form.evento.value;
+            message.textContent = `Gracias por tu comentario sobre "${evento}".`;
+            message.style.color = '#0ff';
+            form.reset();
+            return false;
+        }
     </script>
 
     <!-- TU JS -->

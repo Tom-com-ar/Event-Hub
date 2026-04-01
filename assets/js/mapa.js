@@ -1,17 +1,18 @@
 let map;
 let marker;
 
-// 🔹 Crear mapa al cargar
-window.onload = () => {
+// 🔹 Crear mapa UNA SOLA VEZ
+document.addEventListener("DOMContentLoaded", () => {
+
     map = L.map('map').setView([-34.6, -58.4], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    // Mostrar TODOS los eventos desde el inicio
+    // 🔥 Cargar eventos automáticamente
     cargarEventos();
-};
+});
 
 // 🔹 Lista de eventos
 const eventos = [
@@ -29,11 +30,13 @@ function cargarEventos() {
     });
 }
 
-// 🔹 Cuando hacés click en botón
+// 🔹 Botón → centrar mapa
 function verEvento(lat, lng, nombre) {
+    if (!map) return;
+
     map.setView([lat, lng], 15);
 
-    // eliminar marcador anterior
+    // evitar duplicados
     if (marker) {
         map.removeLayer(marker);
     }
@@ -42,4 +45,4 @@ function verEvento(lat, lng, nombre) {
         .addTo(map)
         .bindPopup(nombre)
         .openPopup();
-}   x
+}
