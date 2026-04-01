@@ -134,31 +134,12 @@
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <script>
-        $(document).foundation();
-
-        function toggleCommentTheme() {
-            const card = document.getElementById('comment-card');
-            const button = document.getElementById('theme-toggle');
-            const darkMode = card.classList.toggle('dark');
-            card.classList.toggle('light', !darkMode);
-            button.textContent = darkMode ? 'Modo claro' : 'Modo oscuro';
-        }
-
-        function enviarComentario(event) {
-            event.preventDefault();
-            const form = event.target;
-            const message = document.getElementById('comment-message');
-            const evento = form.evento.value;
-            message.textContent = `Gracias por tu comentario sobre "${evento}".`;
-            message.style.color = '#0ff';
-            form.reset();
-            return false;
-        }
-    </script>
 
     <!-- TU JS -->
     <script src="assets/js/mapa.js"></script>
+    <script src="assets/js/formulario.js"></script>
+    <script src="assets/js/app.js"></script>
+
 
 </body>
 
