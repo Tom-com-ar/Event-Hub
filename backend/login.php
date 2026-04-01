@@ -4,19 +4,22 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT id, nombre, password FROM usuarios WHERE email = ?";
+        $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $resultado = $stmt->get_result();
         if ($fila = $resultado->fetch_assoc()) {
             if (password_verify($password, $fila['password'])) {
-                $_SESSION['usuario_id'] = $fila['id'];
-                $_SESSION['usuario_nombre'] = $fila['nombre'];
+                $_SESSION['usuario'] = [
+                    'id' => $fila['id'],
+                    'nombre' => $fila['nombre'],
+                    'email' => $fila['email']
+                ];
                 header("Location: ../index.php");
                 exit();
             }
         }
-        header("Location: ../login.php?error=1");
+        header("Location: ../pages/login.php?error=1");
     }
     ?>

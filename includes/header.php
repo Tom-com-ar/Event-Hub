@@ -3,7 +3,7 @@
         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">Mi Sitio Moderno</li>
             <li><a href="index.php">Inicio</a></li>
-            <li><a href="perfil.php">Perfil</a></li>
+            <li><a href="pages/perfil.php">Perfil</a></li>
         </ul>
     </div>
     <div class="top-bar-right">
@@ -12,7 +12,7 @@
             <?php if (isset($_SESSION['usuario'])): ?>
                 <li><a href="backend/logout.php">Cerrar Sesión</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="pages/login.php">Iniciar Sesión</a></li>
             <?php endif; ?>
         </ul>
     </div>

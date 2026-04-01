@@ -1,16 +1,106 @@
+/* Variables para modo claro/oscuro */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #ffffff;
+  --card-border: #e9ecef;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --top-bar-bg: #ffffff;
+  --top-bar-text: #000000;
+}
+
+.dark-mode {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --card-bg: #000000;
+  --card-border: #333;
+  --primary-color: #0ff;
+  --secondary-color: #000000;
+  --top-bar-bg: #000000;
+  --top-bar-text: #ffffff;
+}
+
+/* Estilos base */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.top-bar {
+  background-color: var(--top-bar-bg);
+  color: var(--top-bar-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.callout {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+}
+
+.grid-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.callout {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+  color: var(--text-color);
+}
+
+.callout.secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--card-border);
+  color: var(--text-color);
+}
+
+.callout.alert {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.dark-mode .callout.alert {
+  background-color: #2d1b1e;
+  border-color: #5a1a1f;
+  color: #ea868f;
+}
+
+.callout.success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.dark-mode .callout.success {
+  background-color: #1b2e1f;
+  border-color: #2d5a2d;
+  color: #7abf7a;
+}
+
 .neon-button {
  background: none;
- border: 2px solid #0ff;
- color: #0ff;
+ border: 2px solid var(--primary-color);
+ color: var(--primary-color);
  padding: 10px 20px;
  text-transform: uppercase;
  transition: 0.3s;
- box-shadow: 0 0 10px #0ff, inset 0 0 5px #0ff;
+ box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px var(--primary-color);
 }
 .neon-button:hover {
- background: #0ff;
- color: #000;
- box-shadow: 0 0 20px #0ff;
+ background: var(--primary-color);
+ color: var(--bg-color);
+ box-shadow: 0 0 20px var(--primary-color);
  transform: scale(1.05);
 }
 .card-animada {
