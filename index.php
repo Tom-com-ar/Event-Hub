@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub</title>
 
-    <!-- Foundation (CORREGIDO) -->
+    <!-- Foundation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
 
     <!-- Font Awesome -->
@@ -133,9 +133,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-
-    <!-- TU JS -->
     <script src="assets/js/mapa.js"></script>
     <script src="assets/js/formulario.js"></script>
     <script src="assets/js/app.js"></script>
