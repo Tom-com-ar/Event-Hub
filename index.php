@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub</title>
 
-    <!-- Foundation (CORREGIDO) -->
+    <!-- Foundation -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
 
     <!-- Font Awesome -->
@@ -79,6 +79,51 @@
             <h3>Mapa de eventos</h3>
             <div id="map"></div>
         </div>
+
+        <div class="grid-x grid-margin-x align-center">
+                <div class="cell small-12 medium-10 large-8">
+                    <div class="comment-card light" id="comment-card">
+                        <div class="grid-x align-justify align-middle">
+                            <div class="cell auto">
+                                <h3>Comentarios sobre los eventos</h3>
+                            </div>
+                        </div>
+
+                        <form id="comment-form" onsubmit="return enviarComentario(event)">
+                            <label>Evento
+                                <select name="evento" required>
+                                    <option value="Hackathon 2026">Hackathon 2026</option>
+                                    <option value="FLISOL">FLISOL</option>
+                                    <option value="Charla IA">Charla IA</option>
+                                </select>
+                            </label>
+
+                            <label>Nombre
+                                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                            </label>
+
+                            <label>Correo
+                                <input type="email" name="correo" placeholder="tu@email.com" required>
+                            </label>
+
+                            <label>Comentario
+                                <textarea name="mensaje" rows="5" placeholder="Cuéntanos qué te pareció el evento" required></textarea>
+                            </label>
+
+                            <div class="grid-x grid-margin-x align-justify align-middle">
+                                <div class="cell auto">
+                                    <button type="submit" class="neon-button">Enviar comentario</button>
+                                </div>
+                                <div class="cell auto">
+                                    <span class="comment-note">Tu opinión ayuda a mejorar los próximos eventos.</span>
+                                </div>
+                            </div>
+
+                            <p class="success-message" id="comment-message"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </main>
 
     <footer>
@@ -89,13 +134,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/js/foundation.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <script>
-        $(document).foundation();
-    </script>
-
-    <!-- TU JS -->
     <script src="assets/js/mapa.js"></script>
+    <script src="assets/js/formulario.js"></script>
+    <script src="assets/js/app.js"></script>
+
 
 </body>
 
