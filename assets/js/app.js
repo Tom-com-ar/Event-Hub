@@ -1,33 +1,46 @@
-// Modo oscuro
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('toggleDarkMode');
-    const body = document.body;
-    const icon = toggleButton.querySelector('i');
+// Modo oscuro: <html class="dark-mode"> + localStorage (theme-init.php evita flash al cargar)
+(function () {
+    function setTheme(isDark) {
+        var root = document.documentElement;
+        if (isDark) {
+            root.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+            document.body.classList.remove('dark-mode');
+        }
+        try {
+            localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+        } catch (e) {}
 
-    // Cargar estado desde localStorage
-    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
-    if (darkModeEnabled) {
-        body.classList.add('dark-mode');
-        icon.className = 'fas fa-sun';
-        toggleButton.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
-    } else {
-        icon.className = 'fas fa-moon';
-        toggleButton.innerHTML = '<i class="fas fa-moon"></i> Modo Oscuro';
+        var toggleButton = document.getElementById('toggleDarkMode');
+        if (toggleButton) {
+            toggleButton.innerHTML = isDark
+                ? '<i class="fas fa-sun"></i> Modo Claro'
+                : '<i class="fas fa-moon"></i> Modo Oscuro';
+        }
     }
 
-    // Toggle al hacer click
-    toggleButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.toggle('dark-mode');
-        const isDark = body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDark);
+    function syncFromStorage() {
+        var wantDark = false;
+        try {
+            wantDark = localStorage.getItem('darkMode') === 'true';
+        } catch (e) {}
+        setTheme(wantDark);
+    }
 
-        if (isDark) {
-            icon.className = 'fas fa-sun';
-            toggleButton.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
-        } else {
-            icon.className = 'fas fa-moon';
-            toggleButton.innerHTML = '<i class="fas fa-moon"></i> Modo Oscuro';
+    document.addEventListener('DOMContentLoaded', function () {
+        // Refuerza preferencia por si falta theme-init en alguna página
+        syncFromStorage();
+
+        var toggleButton = document.getElementById('toggleDarkMode');
+        if (!toggleButton) {
+            return;
         }
+
+        toggleButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            setTheme(!document.documentElement.classList.contains('dark-mode'));
+        });
     });
-});
+})();

@@ -1,24 +1,52 @@
-/* Variables para modo claro/oscuro */
+/* Variables — modo claro */
 :root {
     --bg-color: #ffffff;
-    --text-color: #000000;
+    --text-color: #1a1a1a;
     --card-bg: #ffffff;
     --card-border: #e9ecef;
     --primary-color: #007bff;
-    --secondary-color: #6c757d;
+    --primary-hover: #0056b3;
+    --secondary-color: #f1f3f5;
     --top-bar-bg: #ffffff;
-    --top-bar-text: #000000;
+    --top-bar-text: #1a1a1a;
+    --input-bg: #ffffff;
+    --input-border: #cacaca;
+    --link-color: #007bff;
+    --link-hover: #0056b3;
 }
 
-.dark-mode {
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --card-bg: #000000;
-    --card-border: #333;
-    --primary-color: #0ff;
-    --secondary-color: #000000;
-    --top-bar-bg: #000000;
-    --top-bar-text: #ffffff;
+/* Variables — modo oscuro (clase en <html>) */
+html.dark-mode {
+    --bg-color: #0d1117;
+    --text-color: #e6edf3;
+    --card-bg: #161b22;
+    --card-border: #30363d;
+    --primary-color: #58a6ff;
+    --primary-hover: #79c0ff;
+    --secondary-color: #21262d;
+    --top-bar-bg: #161b22;
+    --top-bar-text: #e6edf3;
+    --input-bg: #0d1117;
+    --input-border: #30363d;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
+}
+
+/* Compatibilidad si solo se añade la clase al body */
+body.dark-mode {
+    --bg-color: #0d1117;
+    --text-color: #e6edf3;
+    --card-bg: #161b22;
+    --card-border: #30363d;
+    --primary-color: #58a6ff;
+    --primary-hover: #79c0ff;
+    --secondary-color: #21262d;
+    --top-bar-bg: #161b22;
+    --top-bar-text: #e6edf3;
+    --input-bg: #0d1117;
+    --input-border: #30363d;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
 }
 
 /* Estilos base */
@@ -29,10 +57,46 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+main {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+footer {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+}
+
+a {
+    color: var(--link-color);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
 .top-bar {
     background-color: var(--top-bar-bg);
     color: var(--top-bar-text);
     transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.top-bar a {
+    color: var(--top-bar-text);
+}
+
+.top-bar a:hover {
+    color: var(--primary-color);
+}
+
+.top-bar .menu-text {
+    color: var(--top-bar-text);
 }
 
 .card {
@@ -53,12 +117,6 @@ body {
     color: var(--text-color);
 }
 
-.callout {
-    background-color: var(--card-bg);
-    border-color: var(--card-border);
-    color: var(--text-color);
-}
-
 .callout.secondary {
     background-color: var(--secondary-color);
     border-color: var(--card-border);
@@ -71,10 +129,22 @@ body {
     color: #721c24;
 }
 
-.dark-mode .callout.alert {
+html.dark-mode .callout.alert {
     background-color: #2d1b1e;
     border-color: #5a1a1f;
     color: #ea868f;
+}
+
+.callout.primary {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+}
+
+html.dark-mode .callout.primary {
+    background-color: #1f2d4a;
+    border-color: #303d63;
+    color: #a5c8ff;
 }
 
 .callout.success {
@@ -83,12 +153,62 @@ body {
     color: #155724;
 }
 
-.dark-mode .callout.success {
+html.dark-mode .callout.success {
     background-color: #1b2e1f;
     border-color: #2d5a2d;
     color: #7abf7a;
 }
 
+/* Formularios (login, registro, comentarios) */
+label {
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+    color: #8b949e;
+}
+
+.button.primary,
+.button.expanded.primary {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.button.primary:hover,
+.button.primary:focus,
+.button.expanded.primary:hover,
+.button.expanded.primary:focus {
+    background-color: var(--primary-hover);
+    color: var(--bg-color);
+}
+
+html.dark-mode .button.primary,
+html.dark-mode .button.expanded.primary {
+    color: #0d1117;
+}
+
+html.dark-mode .button.primary:hover,
+html.dark-mode .button.primary:focus,
+html.dark-mode .button.expanded.primary:hover,
+html.dark-mode .button.expanded.primary:focus {
+    color: #0d1117;
+}
 
 .neon-button {
     background: none;
@@ -107,6 +227,10 @@ body {
     transform: scale(1.05);
 }
 
+html.dark-mode .neon-button:hover {
+    color: #0d1117;
+}
+
 .card-animada {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -116,10 +240,25 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+html.dark-mode .card-animada:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
 #map {
     height: 500px;
     width: 100%;
     margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+}
+
+html.dark-mode .leaflet-container {
+    background: #1c2128;
+}
+
+html.dark-mode .leaflet-tile-pane {
+    filter: brightness(0.72) contrast(1.08) saturate(0.85);
 }
 
 .comment-card {
@@ -136,6 +275,13 @@ body {
     color: #111111;
 }
 
+html.dark-mode .comment-card.light {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--card-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .comment-card.dark {
     background: #111111;
     color: #f2f2f2;
@@ -145,6 +291,11 @@ body {
 .comment-card.light label,
 .comment-card.light .comment-note {
     color: #333333;
+}
+
+html.dark-mode .comment-card.light label,
+html.dark-mode .comment-card.light .comment-note {
+    color: #c9d1d9;
 }
 
 .comment-card.dark label,
@@ -162,6 +313,14 @@ body {
     border-radius: 8px;
     padding: 0.85rem;
     margin-top: 0.5rem;
+}
+
+html.dark-mode .comment-card.light input,
+html.dark-mode .comment-card.light select,
+html.dark-mode .comment-card.light textarea {
+    background: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
 }
 
 .comment-card.dark input,
@@ -189,6 +348,10 @@ body {
 .theme-toggle:hover {
     transform: translateY(-1px);
     background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark-mode #toggleDarkMode:hover {
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .success-message {
