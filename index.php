@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require_once 'includes/conexion.php';
+
+$sql = "SELECT * FROM eventos";
+$resultado = $conexion->query($sql);
+?>
 <html lang="es">
 
 <head>
@@ -32,44 +38,23 @@
 
             <div class="grid-x grid-margin-x">
 
-                <div class="cell small-12 medium-6 large-4">
-                    <div class="card card-animada">
-                        <div class="card-section">
-                            <h4>Hackathon 2026</h4>
-                            <p>Programación intensiva</p>
-                            <button class="neon-button"
-                                onclick="verEvento(-34.6037, -58.3816, 'Hackathon 2026')">
-                                Ver en mapa
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <?php while($evento = $resultado->fetch_assoc()): ?>
 
-                <div class="cell small-12 medium-6 large-4">
-                    <div class="card card-animada">
-                        <div class="card-section">
-                            <h4>FLISOL</h4>
-                            <p>Software libre</p>
-                            <button class="neon-button"
-                                onclick="verEvento(-34.61, -58.38, 'FLISOL')">
-                                Ver en mapa
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    <div class="cell small-12 medium-6 large-4">
+                        <div class="card card-animada">
+                            <div class="card-section">
+                                <h4><?= $evento['titulo'] ?></h4>
+                                <p><?= $evento['descripcion'] ?></p>
 
-                <div class="cell small-12 medium-6 large-4">
-                    <div class="card card-animada">
-                        <div class="card-section">
-                            <h4>Charla IA</h4>
-                            <p>Inteligencia Artificial</p>
-                            <button class="neon-button"
-                                onclick="verEvento(-34.59, -58.42, 'Charla IA')">
-                                Ver en mapa
-                            </button>
+                                <button class="neon-button"
+                                    onclick="verEvento(<?= $evento['latitud'] ?>, <?= $evento['longitud'] ?>, '<?= $evento['titulo'] ?>')">
+                                    Ver en mapa
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                <?php endwhile; ?>
 
             </div>
         </div>
