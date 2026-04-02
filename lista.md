@@ -1,9 +1,10 @@
-Registrarse e iniciar sesión.
+TODO LO QUE SE HAGA EN MODO OSCURO Y CLARO
+
  Publicar comentarios en los eventos.
- Personalizar la interfaz entre modo oscuro y claro.
 
+Alan:
+eventos y coordenas desde la base de datas, ver el js map para las coordenadas, mas fotos de los eventos
 
-
-chino informe y el 1
-alan conecta y hace la base de datos
-tomi 2, 4, 5
+chino:
+perfil con mas datos 
+logout

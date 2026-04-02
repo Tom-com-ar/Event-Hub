@@ -1,24 +1,55 @@
-/* Variables para modo claro/oscuro */
+/* Variables — modo claro */
 :root {
     --bg-color: #ffffff;
-    --text-color: #000000;
+    --text-color: #1a1a1a;
     --card-bg: #ffffff;
     --card-border: #e9ecef;
     --primary-color: #007bff;
-    --secondary-color: #6c757d;
+    --primary-hover: #0056b3;
+    --secondary-color: #f1f3f5;
     --top-bar-bg: #ffffff;
-    --top-bar-text: #000000;
+    --top-bar-text: #1a1a1a;
+    --input-bg: #ffffff;
+    --input-border: #cacaca;
+    --link-color: #007bff;
+    --link-hover: #0056b3;
+    --header-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
-.dark-mode {
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --card-bg: #000000;
-    --card-border: #333;
-    --primary-color: #0ff;
-    --secondary-color: #000000;
-    --top-bar-bg: #000000;
-    --top-bar-text: #ffffff;
+/* Variables — modo oscuro (clase en <html>) */
+html.dark-mode {
+    --bg-color: #0d1117;
+    --text-color: #e6edf3;
+    --card-bg: #161b22;
+    --card-border: #30363d;
+    --primary-color: #58a6ff;
+    --primary-hover: #79c0ff;
+    --secondary-color: #21262d;
+    --top-bar-bg: #161b22;
+    --top-bar-text: #e6edf3;
+    --input-bg: #0d1117;
+    --input-border: #30363d;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
+    --header-shadow: 0 1px 0 rgba(240, 246, 252, 0.1);
+}
+
+/* Compatibilidad si solo se añade la clase al body */
+body.dark-mode {
+    --bg-color: #0d1117;
+    --text-color: #e6edf3;
+    --card-bg: #161b22;
+    --card-border: #30363d;
+    --primary-color: #58a6ff;
+    --primary-hover: #79c0ff;
+    --secondary-color: #21262d;
+    --top-bar-bg: #161b22;
+    --top-bar-text: #e6edf3;
+    --input-bg: #0d1117;
+    --input-border: #30363d;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
+    --header-shadow: 0 1px 0 rgba(240, 246, 252, 0.1);
 }
 
 /* Estilos base */
@@ -29,10 +60,216 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.top-bar {
+main {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+footer {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+}
+
+a {
+    color: var(--link-color);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* Cabecera responsive + modo claro/oscuro vía variables */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: var(--top-bar-bg);
     color: var(--top-bar-text);
-    transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--header-shadow);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.site-header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0.65rem max(1rem, env(safe-area-inset-right)) 0.65rem max(1rem, env(safe-area-inset-left));
+}
+
+.site-brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    color: var(--top-bar-text);
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.site-brand:hover {
+    color: var(--primary-color);
+}
+
+.site-header .site-nav-wrap a {
+    color: var(--top-bar-text);
+    text-decoration: none;
+}
+
+.site-header .site-nav-wrap a:hover {
+    color: var(--primary-color);
+}
+
+.site-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: auto;
+    padding: 0;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    background: var(--secondary-color);
+    color: var(--top-bar-text);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.site-nav-toggle:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.site-nav-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 1.25rem;
+}
+
+.site-nav-toggle-line {
+    display: block;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.site-nav-toggle.is-active .site-nav-toggle-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.site-nav-toggle.is-active .site-nav-toggle-line:nth-child(2) {
+    opacity: 0;
+}
+
+.site-nav-toggle.is-active .site-nav-toggle-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.site-nav-wrap {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.site-nav-wrap.is-open {
+    display: flex;
+}
+
+.site-nav-list,
+.site-nav-actions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav-list li + li,
+.site-nav-actions li + li {
+    border-top: 1px solid var(--card-border);
+}
+
+.site-nav-list a,
+.site-nav-actions a {
+    display: block;
+    padding: 0.85rem 0.15rem;
+    font-size: 0.95rem;
+}
+
+.site-nav-theme i {
+    margin-right: 0.35rem;
+    width: 1em;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .site-nav-toggle {
+        display: none;
+    }
+
+    .site-header-inner {
+        flex-wrap: nowrap;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .site-nav-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1.5rem 2rem;
+        width: auto;
+        flex: 1;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .site-nav-wrap.is-open {
+        display: flex;
+    }
+
+    .site-nav-primary,
+    .site-nav-secondary {
+        display: flex;
+        align-items: center;
+    }
+
+    .site-nav-list,
+    .site-nav-actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.25rem 1rem;
+    }
+
+    .site-nav-list li + li,
+    .site-nav-actions li + li {
+        border-top: none;
+    }
+
+    .site-nav-list a,
+    .site-nav-actions a {
+        display: inline-block;
+        padding: 0.5rem 0.35rem;
+    }
 }
 
 .card {
@@ -53,12 +290,6 @@ body {
     color: var(--text-color);
 }
 
-.callout {
-    background-color: var(--card-bg);
-    border-color: var(--card-border);
-    color: var(--text-color);
-}
-
 .callout.secondary {
     background-color: var(--secondary-color);
     border-color: var(--card-border);
@@ -71,10 +302,22 @@ body {
     color: #721c24;
 }
 
-.dark-mode .callout.alert {
+html.dark-mode .callout.alert {
     background-color: #2d1b1e;
     border-color: #5a1a1f;
     color: #ea868f;
+}
+
+.callout.primary {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+}
+
+html.dark-mode .callout.primary {
+    background-color: #1f2d4a;
+    border-color: #303d63;
+    color: #a5c8ff;
 }
 
 .callout.success {
@@ -83,12 +326,62 @@ body {
     color: #155724;
 }
 
-.dark-mode .callout.success {
+html.dark-mode .callout.success {
     background-color: #1b2e1f;
     border-color: #2d5a2d;
     color: #7abf7a;
 }
 
+/* Formularios (login, registro, comentarios) */
+label {
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+    color: #8b949e;
+}
+
+.button.primary,
+.button.expanded.primary {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.button.primary:hover,
+.button.primary:focus,
+.button.expanded.primary:hover,
+.button.expanded.primary:focus {
+    background-color: var(--primary-hover);
+    color: var(--bg-color);
+}
+
+html.dark-mode .button.primary,
+html.dark-mode .button.expanded.primary {
+    color: #0d1117;
+}
+
+html.dark-mode .button.primary:hover,
+html.dark-mode .button.primary:focus,
+html.dark-mode .button.expanded.primary:hover,
+html.dark-mode .button.expanded.primary:focus {
+    color: #0d1117;
+}
 
 .neon-button {
     background: none;
@@ -107,6 +400,10 @@ body {
     transform: scale(1.05);
 }
 
+html.dark-mode .neon-button:hover {
+    color: #0d1117;
+}
+
 .card-animada {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -116,10 +413,25 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+html.dark-mode .card-animada:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
 #map {
     height: 500px;
     width: 100%;
     margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+}
+
+html.dark-mode .leaflet-container {
+    background: #1c2128;
+}
+
+html.dark-mode .leaflet-tile-pane {
+    filter: brightness(0.72) contrast(1.08) saturate(0.85);
 }
 
 .comment-card {
@@ -136,6 +448,13 @@ body {
     color: #111111;
 }
 
+html.dark-mode .comment-card.light {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--card-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .comment-card.dark {
     background: #111111;
     color: #f2f2f2;
@@ -145,6 +464,11 @@ body {
 .comment-card.light label,
 .comment-card.light .comment-note {
     color: #333333;
+}
+
+html.dark-mode .comment-card.light label,
+html.dark-mode .comment-card.light .comment-note {
+    color: #c9d1d9;
 }
 
 .comment-card.dark label,
@@ -162,6 +486,14 @@ body {
     border-radius: 8px;
     padding: 0.85rem;
     margin-top: 0.5rem;
+}
+
+html.dark-mode .comment-card.light input,
+html.dark-mode .comment-card.light select,
+html.dark-mode .comment-card.light textarea {
+    background: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
 }
 
 .comment-card.dark input,
@@ -189,6 +521,10 @@ body {
 .theme-toggle:hover {
     transform: translateY(-1px);
     background: rgba(255, 255, 255, 0.08);
+}
+
+.site-header #toggleDarkMode:hover {
+    opacity: 0.92;
 }
 
 .success-message {
