@@ -50,6 +50,10 @@ $resultado = $conexion->query($sql);
                                     onclick="verEvento(<?= $evento['latitud'] ?>, <?= $evento['longitud'] ?>, '<?= $evento['titulo'] ?>')">
                                     Ver en mapa
                                 </button>
+                                <button class="neon-button"
+                                    onclick="verComentarios(<?= $evento['id'] ?>, '<?= $evento['titulo'] ?>')">
+                                    Ver comentarios
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -109,6 +113,19 @@ $resultado = $conexion->query($sql);
                     </div>
                 </div>
             </div>
+
+            
+        <div id="modal-comentarios" class="reveal" data-reveal>
+            <h3 id="titulo-modal">Comentarios</h3>
+
+            <div id="lista-comentarios">
+                <!-- se cargan dinámicamente -->
+            </div>
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </main>
 
     <footer>

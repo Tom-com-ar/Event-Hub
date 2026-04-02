@@ -40,3 +40,38 @@ function enviarComentario(event) {
 
     return false;
 }
+
+function verComentarios(eventoId, titulo) {
+    const lista = document.getElementById("lista-comentarios");
+    const tituloModal = document.getElementById("titulo-modal");
+
+    tituloModal.textContent = "Comentarios de " + titulo;
+    lista.innerHTML = "Cargando...";
+
+    fetch("backend/obtener_comentarios.php?evento_id=" + eventoId)
+        .then(res => res.json())
+        .then(data => {
+            if (data.length === 0) {
+                lista.innerHTML = "<p>No hay comentarios aún.</p>";
+                return;
+            }
+
+            let html = "";
+            data.forEach(c => {
+                html += `
+                    <div style="margin-bottom:10px;">
+                        <strong>${c.nombre}</strong><br>
+                        <small>${c.fecha}</small><br>
+                        <p>${c.mensaje}</p>
+                        <hr>
+                    </div>
+                `;
+            });
+
+            lista.innerHTML = html;
+        });
+
+    // abrir modal (Foundation)
+    const modal = new Foundation.Reveal($('#modal-comentarios'));
+    modal.open();
+}
