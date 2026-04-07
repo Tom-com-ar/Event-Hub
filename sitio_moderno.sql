@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2026 a las 08:41:01
+-- Tiempo de generación: 07-04-2026 a las 21:21:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,14 +36,6 @@ CREATE TABLE `comentarios` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id`, `evento_id`, `nombre`, `correo`, `mensaje`, `fecha`) VALUES
-(1, 2, 'Alan', 'alan.bissio.t1vl@gmail.com', 'Comentario de prueba', '2026-04-02 06:31:40'),
-(2, 2, 'Tomi', 'tomas@gmail.com', 'Otro comentario de prueba', '2026-04-02 06:38:49');
-
 -- --------------------------------------------------------
 
 --
@@ -60,15 +52,6 @@ CREATE TABLE `eventos` (
   `longitud` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `eventos`
---
-
-INSERT INTO `eventos` (`id`, `titulo`, `descripcion`, `fecha`, `usuario_id`, `latitud`, `longitud`) VALUES
-(1, 'Hackathon 2026', 'Programación intensiva para desarrolladores.', '2026-05-15', 1, -34.60370000, -58.38160000),
-(2, 'FLISOL', 'Festival Latinoamericano de Instalación de Software Libre.', '2026-04-25', 2, -34.61000000, -58.38000000),
-(3, 'Charla IA', 'Introducción a la Inteligencia Artificial.', '2026-06-10', 3, -34.59000000, -58.42000000);
-
 -- --------------------------------------------------------
 
 --
@@ -80,18 +63,19 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha_nacimiento` date DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `direccion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `fecha_registro`) VALUES
-(1, 'Admin User', 'admin@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2026-04-02 05:48:14'),
-(2, 'Juan Pérez', 'juan@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2026-04-02 05:48:14'),
-(3, 'María García', 'maria@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2026-04-02 05:48:14'),
-(4, 'Alan', 'alan.bissio.t1vl@gmail.com', '$2y$10$XN72EpBC0xvCsPVTgPMwMeJM0HVw2gu9fX/d2pkSpD9p6uOeQEzry', '2026-04-02 06:12:53');
+INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `fecha_registro`, `foto`, `fecha_nacimiento`, `descripcion`, `telefono`, `direccion`) VALUES
+(6, 'Joaquin Acevedo', 'joaquiinacevedo@gmail.co', '$2y$10$Tli1TI75dLX.ntNyC8INLuW4WPNZ/pVa/avKWZmgXqgJo5WrGs5U2', '2026-04-07 19:13:31', 'https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate', '2026-04-15', 'Aguante river', '01130579487', 'Capdevila 6420');
 
 --
 -- Índices para tablas volcadas
@@ -138,7 +122,7 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

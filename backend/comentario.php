@@ -1,9 +1,15 @@
 <?php
+session_start();
 require_once '../includes/conexion.php';
 
+if (!isset($_SESSION['usuario'])) {
+    echo "error";
+    exit();
+}
+
 $evento = $_POST['evento'];
-$nombre = $_POST['nombre'];
-$correo = $_POST['correo'];
+$nombre = $_SESSION['usuario']['nombre'];
+$correo = $_SESSION['usuario']['email'];
 $mensaje = $_POST['mensaje'];
 
 // Buscar el ID del evento por el título

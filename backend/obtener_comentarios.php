@@ -1,5 +1,11 @@
 <?php
+session_start();
 require_once '../includes/conexion.php';
+
+if (!isset($_SESSION['usuario'])) {
+    echo json_encode([]);
+    exit();
+}
 
 $evento_id = $_GET['evento_id'];
 

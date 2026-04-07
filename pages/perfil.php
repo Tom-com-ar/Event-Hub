@@ -31,6 +31,19 @@
                                 <h3>Perfil de Usuario</h3>
                                 <p><strong>Nombre:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['nombre']); ?></p>
                                 <p><strong>Email:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['email']); ?></p>
+                                <?php if (!empty($_SESSION['usuario']['telefono'])): ?>
+                                    <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['telefono']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($_SESSION['usuario']['fecha_nacimiento'])): ?>
+                                    <p><strong>Fecha de Nacimiento:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['fecha_nacimiento']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($_SESSION['usuario']['descripcion'])): ?>
+                                    <p><strong>Descripción:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['descripcion']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($_SESSION['usuario']['direccion'])): ?>
+                                    <p><strong>Dirección:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['direccion']); ?></p>
+                                <?php endif; ?>
+                                <p><strong>Fecha de Registro:</strong> <?php echo htmlspecialchars($_SESSION['usuario']['fecha_registro']); ?></p>
                                 <!-- Agregar más campos si es necesario -->
                             </div>
                         </div>

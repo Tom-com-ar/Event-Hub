@@ -39,6 +39,18 @@
                                 <label>Correo Electrónico
                                     <input type="email" name="email" placeholder="tu@email.com" required>
                                 </label>
+                                <label>Teléfono
+                                    <input type="tel" name="telefono" placeholder="Tu teléfono">
+                                </label>
+                                <label>Fecha de Nacimiento
+                                    <input type="date" name="fecha_nacimiento">
+                                </label>
+                                <label>Dirección
+                                    <textarea name="direccion" placeholder="Tu dirección"></textarea>
+                                </label>
+                                <label>Descripción
+                                    <textarea name="descripcion" placeholder="Una breve descripción sobre ti"></textarea>
+                                </label>
                                 <label>Contraseña
                                     <input type="password" name="password" placeholder="Contraseña" required>
                                 </label>

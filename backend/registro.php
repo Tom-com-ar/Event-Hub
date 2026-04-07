@@ -5,6 +5,10 @@ require_once '../includes/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = trim($_POST['nombre']);
     $email = trim($_POST['email']);
+    $telefono = trim($_POST['telefono'] ?? '');
+    $fecha_nacimiento = $_POST['fecha_nacimiento'] ?? '';
+    $direccion = trim($_POST['direccion'] ?? '');
+    $descripcion = trim($_POST['descripcion'] ?? '');
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
@@ -40,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar usuario
-    $sql_insert = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
+    $sql_insert = "INSERT INTO usuarios (nombre, email, telefono, fecha_nacimiento, direccion, descripcion, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt_insert = $conexion->prepare($sql_insert);
-    $stmt_insert->bind_param("sss", $nombre, $email, $hashed_password);
+    $stmt_insert->bind_param("sssssss", $nombre, $email, $telefono, $fecha_nacimiento, $direccion, $descripcion, $hashed_password);
 
     if ($stmt_insert->execute()) {
         header("Location: ../pages/login.php?success=1&msg=Registro exitoso. Ahora puedes iniciar sesión");

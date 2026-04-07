@@ -6,5 +6,3 @@ Alan:
 eventos y coordenas desde la base de datas, ver el js map para las coordenadas, mas fotos de los eventos
 
 chino:
-perfil con mas datos 
-logout

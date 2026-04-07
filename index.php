@@ -51,10 +51,12 @@ $resultado = $conexion->query($sql);
                                     onclick="verEvento(<?= $evento['latitud'] ?>, <?= $evento['longitud'] ?>, '<?= $evento['titulo'] ?>')">
                                     Ver en mapa
                                 </button>
+                                <?php if (isset($_SESSION['usuario'])): ?>
                                 <button class="neon-button"
                                     onclick="verComentarios(<?= $evento['id'] ?>, '<?= $evento['titulo'] ?>')">
                                     Ver comentarios
                                 </button>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -72,6 +74,7 @@ $resultado = $conexion->query($sql);
 
         <div class="grid-x grid-margin-x align-center">
                 <div class="cell small-12 medium-10 large-8">
+                    <?php if (isset($_SESSION['usuario'])): ?>
                     <div class="comment-card light" id="comment-card">
                         <div class="grid-x align-justify align-middle">
                             <div class="cell auto">
@@ -86,14 +89,6 @@ $resultado = $conexion->query($sql);
                                     <option value="FLISOL">FLISOL</option>
                                     <option value="Charla IA">Charla IA</option>
                                 </select>
-                            </label>
-
-                            <label>Nombre
-                                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                            </label>
-
-                            <label>Correo
-                                <input type="email" name="correo" placeholder="tu@email.com" required>
                             </label>
 
                             <label>Comentario
@@ -112,6 +107,12 @@ $resultado = $conexion->query($sql);
                             <p class="success-message" id="comment-message"></p>
                         </form>
                     </div>
+                    <?php else: ?>
+                    <div class="callout alert card-animada">
+                        <h5>Comentarios disponibles solo para usuarios registrados</h5>
+                        <p>Por favor, <a href="pages/login.php">inicia sesión</a> para ver y publicar comentarios.</p>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
